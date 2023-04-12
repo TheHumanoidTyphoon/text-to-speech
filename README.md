@@ -14,7 +14,7 @@ To run the script, the following libraries need to be installed on your machine:
 ## Usage
 To use this script, follow these steps:
 
-- Create an instance of the TextToSpeech class.
+- Create an instance of the `TextToSpeech` class.
 - Set the language (if required) by calling the `set_language()` method.
 - Call the `transform()` method with the file path and desired output format as parameters.
 Here's an example of how to use the script to transform a `PDF` file into speech in `MP3` format:
@@ -32,6 +32,6 @@ This script was developed and tested on the Windows operating system. The playba
 ## Code structure
 The script has two classes:
 
-- `FileReader`: This class is responsible for reading the input file and returning its content in a usable format. It supports different file formats and can read pages of PDF and DOCX files. If the file format is not supported, an error message is displayed.
+- `FileReader`: This class is responsible for reading the input file and returning its content in a usable format. It supports different file formats and can read pages of `PDF` and `DOCX` files. If the file format is not supported, an error message is displayed.
 
-- `TextToSpeech`: This class is responsible for transforming the text to speech. The speed of speech can be adjusted and the language of speech can also be set by calling the `set_language()` method. The `transform()` method will process the input file, convert it to speech, and save it in the specified output format (MP3 or WAV). It also starts playing the speech automatically and provides a pause/resume functionality while playing. An error message will be displayed if any issues arise during this process.
+- `TextToSpeech`: This class is responsible for transforming the text to speech. The speed of speech can be adjusted and the language of speech can also be set by calling the `set_language()` method. The `transform()` method will process the input file, convert it to speech, and save it in the specified output format (`MP3` or `WAV`). It also starts playing the speech automatically and provides a pause/resume functionality while playing. An error message will be displayed if any issues arise during this process.
