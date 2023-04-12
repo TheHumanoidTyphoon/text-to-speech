@@ -6,11 +6,11 @@ This Python script utilizes several libraries to enable reading and conversion o
 ## Requirements
 To run the script, the following libraries need to be installed on your machine:
 
-- pdfplumber
-- gtts
-- pygame
-- docx2txt
-- BeautifulSoup
+- `pdfplumber`
+- `gtts`
+- `pygame`
+- `docx2txt`
+- `BeautifulSoup`
 ## Usage
 To use this script, follow these steps:
 
