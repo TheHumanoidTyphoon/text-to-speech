@@ -1,7 +1,7 @@
 # Text to Speech (TTS) script
 
 ## Overview
-This Python script utilizes several libraries to enable reading and conversion of various file formats into either MP3 or WAV speech format. Supported file formats include PDF, DOCX, TXT, and HTML, with the added capability to process multiple pages for PDF and DOCX files.
+This Python script utilizes several libraries to enable reading and conversion of various file formats into either `MP3` or `WAV` speech format. Supported file formats include `PDF`, `DOCX`, `TXT`, and `HTML`, with the added capability to process multiple pages for `PDF` and `DOCX` files.
 
 ## Requirements
 To run the script, the following libraries need to be installed on your machine:
