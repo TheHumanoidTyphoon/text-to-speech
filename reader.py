@@ -8,6 +8,22 @@ import docx2txt
 from bs4 import BeautifulSoup
 
 class FileReader:
+    """
+    This class reads different types of files and extracts their content for further processing.
+
+    Args:
+    file_path (str): The path to the file.
+
+    Attributes:
+    file_path (str): The path to the file.
+    file_type (str): The type of the file, determined by its extension.
+    file (object): The file object for the given file path.
+
+    Methods:
+    read_page(page_num): Reads the text content of a page from the file.
+    read_pages(page_nums): Reads the text content of multiple pages from the file.
+    close(): Closes the file object.
+    """
     def __init__(self, file_path):
         self.file_path = file_path
         self.file_type = os.path.splitext(file_path)[-1].lower()
@@ -40,6 +56,15 @@ class FileReader:
             self.file = None
 
     def read_page(self, page_num):
+        """
+        Reads the text content of a page from the file.
+
+        Args:
+        page_num (int): The page number to read.
+
+        Returns:
+        str: The text content of the page.
+        """
         if self.file_type == ".pdf":
             page = self.file.pages[page_num]
             text = page.extract_text()
@@ -56,6 +81,15 @@ class FileReader:
         return text
 
     def read_pages(self, page_nums):
+        """
+        Reads the text content of multiple pages from the file.
+
+        Args:
+        page_nums (list of int): The list of page numbers to read.
+
+        Returns:
+        str: The text content of the selected pages.
+        """
         texts = []
         for i, num in enumerate(page_nums):
             try:
@@ -68,19 +102,60 @@ class FileReader:
         return "\n\n".join(texts)
 
     def close(self):
+        """
+        Closes the file object.
+        """
         if self.file_type == ".pdf":
             self.file.close()
 
 class TextToSpeech:
+    """
+    A class for converting text to speech.
+
+    Args:
+        speed (float, optional): The speed at which the text should be spoken, defaults to 1.0.
+
+    Attributes:
+        speed (float): The speed at which the text should be spoken.
+        language (str): The language in which the text should be spoken.
+        paused (bool): Whether the speech playback is currently paused.
+
+    Methods:
+        set_language(language): Sets the language for speech synthesis.
+        _play_audio(filename, output_format): Plays the audio file.
+        transform(file_path, output_format): Converts text to speech and plays it.
+        pause(): Pauses the speech playback.
+        resume(): Resumes the speech playback.
+    """
     def __init__(self, speed=1.0):
+        """
+        Initializes the TextToSpeech object.
+
+        Args:
+            speed (float, optional): The speed at which the text should be spoken, defaults to 1.0.
+        """
         self.speed = speed
         self.language = None
         self.paused = False
 
     def set_language(self, language):
+        """
+        Sets the language for speech synthesis.
+
+        Args:
+            language (str): The language in which the text should be spoken.
+        """
         self.language = language
 
     def _play_audio(self, filename, output_format):
+        """
+        Plays the audio file.
+
+        Args:
+            filename (str): The name of the file to play.
+            output_format (str): The format of the output file.
+        """
+
         try:
             if output_format == 'mp3':
                 os.startfile(filename) # open the file automatically
@@ -93,6 +168,13 @@ class TextToSpeech:
             print(f"Failed to play audio file: {e}")
 
     def transform(self, file_path, output_format='mp3'):
+        """
+        Converts text to speech and plays it.
+
+        Args:
+            file_path (str): The path to the input file.
+            output_format (str, optional): The format of the output file, defaults to 'mp3'.
+        """
         try:
             file_reader = FileReader(file_path)
             pages = range(50, 55)
@@ -120,13 +202,22 @@ class TextToSpeech:
             print(f"Failed to transform text to speech: {e}")
 
     def pause(self):
+        """
+        Set the 'paused' attribute of the object to True.
+        """
         self.paused = True
 
     def resume(self):
+        """
+        Set the 'paused' attribute of the object to False.
+        """
         self.paused = False
 
 
 if __name__ == '__main__':
+    """
+    Convert a PDF file to an audio file using text-to-speech.
+    """
     pdf_path = "e-books/alices-adventures-in-wonderland.pdf"
     try:
         tts = TextToSpeech(speed=1.5)
